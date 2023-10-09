@@ -19,71 +19,70 @@
 	</p>
 </div>
 
-BlitzPHP Vite is a package that aims to integrate [vitejs](https://vitejs.dev/) with [BlitzPHP](http://blitz-php.byethost14.com/) in a simple way.
+BlitzPHP Vite est un package qui vise à intégrer [vitejs](https://vitejs.dev/) avec [BlitzPHP](http://blitz-php.byethost14.com/) de manière simple.
 
-## Features:
- - ⏱️ Almost zero configuration
- - 🧩 Easy to install and remove
- - 🔨 Easy to customize
- - ✌️ Support most used frameworks: `react`, `vue`, and `svlete`.
- - 🔥 Enjoy hot module replacement (HMR)
- 
+## Caractéristiques:
+  - ⏱️ Configuration quasi nulle
+  - 🧩 Facile à installer et à supprimer
+  - 🔨 Facile à personnaliser
+  - ✌️ Prise en charge des frameworks les plus utilisés : `react`, `vue` et `svlete`.
+  - 🔥 Profitez du remplacement du module à chaud (HMR) 
 ## Installation:
 
 ```
 composer require dimtrovich/blitzphp-vite
 ```
 
-then from your project root, run:
+puis depuis la racine de votre projet, exécutez :
 
 ```
 php klinge vite:init --framework=<framework>
 ```
 
-replace `<framework>` with `vue`, `react`, `svelte`, or `none`
+remplacez `<framework>` par `vue`, `react`, `svelte` ou `none`
 
-or you can just run:
+ou vous pouvez simplement exécuter :
 
 ```
 php klinge vite:init
 ```
 
-our buddy `klinge` will handle the rest for you 🙃
+notre copain `klinge` s'occupera du reste pour vous 🙃
 
-## Getting Started:
-- Install your node dependencies: `npm install`
-- Start vite server: `npm run dev`
-- Start CI server: `php klinge serve` or access it through your virtual host.
-- That's all =)
+## Commencer:
+- Installez vos dépendances de node : `npm install`
+- Démarrez le serveur vite : `npm run dev`
+- Démarrez le serveur blitzphp: `php klinge serve` ou accédez-y via votre hôte virtuel.
+- C'est tout =)
 
 > **NOTE:**
 > 
-> `npm run dev` is not where you should work, it main purpose is to serve assets, such as scripts or stylesheets.
-> once you build your files, it becomes useless
-> but as long as it running, the package will use it instead of the bundled files.
-> So make sure to **access your project** from ci server or a vitual host.
+> `npm run dev` n'est pas l'endroit où vous devriez travailler, son objectif principal est de servir des actifs, tels que des scripts ou des feuilles de style.
+> une fois que vous construisez vos fichiers, cela devient inutile
+> mais tant qu'il sera exécuté, le package l'utilisera à la place des fichiers fournis.
+> Assurez-vous donc d'**accéder à votre projet** depuis le serveur BlitzPHP ou un hôte virtuel.
 
-## Build your files:
+## Construisez vos fichiers :
 
-to bundle your files, run: 
+pour regrouper vos fichiers, exécutez : 
 ```
 npm run build
 ```
-this command will generate the bundled assets in your public directory. 
-but as we said before, as long as vite server is running, the package will use it instead of bundled files, so make sure to stop it when you're done developing.
+cette commande générera les actifs regroupés dans votre répertoire public.
+mais comme nous l'avons déjà dit, tant que le serveur vite est en cours d'exécution, le package l'utilisera à la place des fichiers groupés, alors assurez-vous de l'arrêter lorsque vous aurez terminé le développement.
 
-## Uninitialize:
+## Désinitialiser :
 
-`composer remove dimtrovich/blitzphp-vite` command will remove the package, but the generated files will remain there (package.json, vite.config.js ...etc).
-so to avoid that, make sure to run the following command first:
+La commande `composer remove dimtrovich/blitzphp-vite` supprimera le package, mais les fichiers générés y resteront (package.json, vite.config.js, etc...).
+donc pour éviter cela, assurez-vous d'abord d'exécuter la commande suivante :
 
 ```
 php klinge vite:remove
 ```
-This command will do the following:
-- delete `package.json`, `packages.lock.json` and `vite.config.js`.
-- delete `resources` folder.
-- And finally restore your `.env` file.
+Cette commande fera ce qui suit :
+- supprimer `package.json`, `packages.lock.json` et `vite.config.js`.
+- supprimer le dossier `ressources`.
+- Et enfin restaurer votre fichier `.env`.
 
 ## 🔥 Need a quick start?
 Check out our starter apps for [svelte](https://github.com/dimtrovich/ci-svelte-appstarter) and [vue](https://github.com/dimtrovich/ci-vue-appstarter).
@@ -95,13 +94,10 @@ Check out our starter apps for [svelte](https://github.com/dimtrovich/ci-svelte-
 	<img width="120px" src="https://github.com/dimtrovich/ci-vue-appstarter/raw/master/ci-vue.webp">
 </a> 
 
-## Contributing
-All contributions are welcome, it doesn't matter whether you can code, write documentation, or help find bugs.
-feel free to use issues or pull requests.
+## Contributions
+Toutes les contributions sont les bienvenues, peu importe que vous sachiez coder, rédiger de la documentation ou aider à trouver des bogues.
+n'hésitez pas à utiliser des issues ou des pull request.
 
-## Support
-Unfortunately, I don't drink coffee 💔, but you can star it instead 🙃
-
-## License
+## Licence
 
 MIT License &copy; 2023 [Dimitri Sitchet Tomkeu](https://github.com/dimtrovich)

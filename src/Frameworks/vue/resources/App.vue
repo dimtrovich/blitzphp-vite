@@ -6,10 +6,10 @@ const count = ref(0)
 <template>
     <div class="container">
         <div class="logos">
-            <img src="https://github.com/firtadokei/codeigniter-vitejs/raw/master/src/logo.png" class="logo" alt="Codeigniter vite logo" />
+            <img src="https://github.com/dimtrovich/blitzphp-vite/raw/master/src/logo.png" class="logo" alt="BlitzPHP Vite logo" />
             <img src="@/vue.svg" class="logo" alt="Vue logo" />
         </div>
-        <h2>Codeigniter Vite + Vue</h2>
+        <h2>BlitzPHP Vite + Vue</h2>
         <p>
             <button @click="count++">You click me {{ count }} times</button>
         </p>

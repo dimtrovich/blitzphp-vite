@@ -14,16 +14,16 @@ const increment =
 		<div
 			class="logos">
 			<img
-				src="https://github.com/firtadokei/codeigniter-vitejs/raw/master/src/logo.png"
+				src="https://github.com/dimtrovich/blitzphp-vite/raw/master/src/logo.png"
 				class="logo"
-				alt="Codeigniter vite logo" />
+				alt="BlitzPHP Vite logo" />
 			<img
 				src={svelteLogo}
 				class="logo"
 				alt="Svelte logo" />
 		</div>
 		<h2>
-			Codeigniter
+			BlitzPHP
 			Vite
 			+
 			Svelte

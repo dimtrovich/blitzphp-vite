@@ -1,5 +1,5 @@
-# Security Policy
+# Politique de sécurité
 
-## Reporting a Vulnerability
+## Signaler une vulnérabilité
 
-If you discover a security vulnerability please email [mihatorikei@gmail.com](mailto:mihatorikei@gmail.com) instead of using the issue tracker.
+Si vous découvrez une vulnérabilité de sécurité, veuillez envoyer un e-mail à [devcode.dst@gmail.com](mailto:devcode.dst@gmail.com) au lieu d'utiliser le suivi des problèmes.
