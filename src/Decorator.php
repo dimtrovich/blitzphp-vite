@@ -14,10 +14,12 @@ class Decorator implements ViewDecoratorInterface
                 throw new \Exception('Le package BlitzPHP Vite est installé, mais pas initialisé. avez-vous exécutez "php klinge vite:init" ?');
             }
 
-            # Injecter d'abord le div de l'application
-            $html = str_replace('<body>', "<body>\n\t<div id=\"app\">", $html);
-            # Fermez le div
-            $html = str_replace('</body>', "\n\t</div>\n</body>", $html);
+			if (! str_contains($html, '<div id="app"')) {
+				# Injecter d'abord le div de l'application
+				$html = str_replace('<body>', "<body>\n\t<div id=\"app\">", $html);
+				# Fermez le div
+				$html = str_replace('</body>', "\n\t</div>\n</body>", $html);
+			}
 
             # Obtenez les balises générées.
             $tags = Vite::tags();

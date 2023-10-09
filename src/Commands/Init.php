@@ -5,8 +5,10 @@ namespace Dimtrovich\BlitzPHP\Vite\Commands;
 use BlitzPHP\Autoloader\Autoloader;
 use BlitzPHP\Cli\Console\Command;
 use BlitzPHP\Cli\Console\Console;
+use BlitzPHP\Container\Services;
 use BlitzPHP\Publisher\Publisher;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Finder\SplFileInfo;
 use Throwable;
 
 /**
@@ -25,7 +27,7 @@ class Init extends Command
         '--framework' => 'Le nom du framework à utiliser.',
     ];
 
-	private string $framework;
+	private ?string $framework = null;
 
 	private array $supportedFrameworks = ['none', 'react', 'vue', 'svelte'];
 
@@ -66,7 +68,7 @@ class Init extends Command
 
 		# Tout est prêt maintenant.
 		$this->ok('BlitzPHP Vite initialisé avec succès ✅')->eol();
-		$this->write('Executer: npm install && npm run dev')->eol();
+		$this->eol()->write('Executer: npm install && npm run dev');
 	}
 
 	/**
@@ -76,14 +78,15 @@ class Init extends Command
 	 */
 	private function generateFrameworkFiles()
 	{
-		helper('filesystem');
-
 		$this->io->warn('⚡ Générer des fichiers vite...', true);
 
 		# Fichiers de framework.
 		$frameworkPath = ($this->framework === 'none') ? 'Frameworks/default' : "Frameworks/$this->framework";
 
-		$frameworkFiles = directory_map($this->path . $frameworkPath, 1, true);
+		$frameworkFiles = array_map(
+			fn(SplFileInfo $file) => $file->getRelativePathname(), 
+			Services::fs()->allFiles($this->path . $frameworkPath, true)
+		);
 
 		$publisher = new Publisher($this->path . $frameworkPath, ROOTPATH);
 
@@ -153,6 +156,6 @@ class Init extends Command
 		}
 
 		# env modifié.
-		$this->eol()->write('.env file modifié ✅')->newLine();
+		$this->success('.env file modifié ✅')->newLine();
 	}
 }

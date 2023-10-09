@@ -5,8 +5,10 @@ namespace Dimtrovich\BlitzPHP\Vite\Commands;
 use BlitzPHP\Autoloader\Autoloader;
 use BlitzPHP\Cli\Console\Command;
 use BlitzPHP\Cli\Console\Console;
+use BlitzPHP\Container\Services;
 use BlitzPHP\Publisher\Publisher;
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Finder\SplFileInfo;
 
 class Remove extends Command
 {
@@ -50,8 +52,11 @@ class Remove extends Command
 
 		$framework = env('VITE_FRAMEWORK', 'default');
 
-		$frameworkFiles = directory_map($this->path . "frameworks/$framework", 1, true);
-
+		$frameworkFiles = array_map(
+			fn(SplFileInfo $file) => $file->getRelativePathname(), 
+			Services::fs()->allFiles($this->path . "Frameworks/$framework", true)
+		);
+		
 		foreach ($frameworkFiles as $file) {
 			# Retrait du dossier resources|src.
 			if (is_file(ROOTPATH . $file)) {
