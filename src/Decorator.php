@@ -2,7 +2,7 @@
 
 namespace Dimtrovich\BlitzPHP\Vite;
 
-use BlitzPHP\View\ViewDecoratorInterface;
+use BlitzPHP\Contracts\View\ViewDecoratorInterface;
 
 class Decorator implements ViewDecoratorInterface
 {
