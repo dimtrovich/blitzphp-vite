@@ -16,7 +16,7 @@ class Vite
     /**
      * @var string manifest path.
      */
-    private static $manifest = WEBROOT . 'manifest.json';
+    public static $manifest = WEBROOT . '.vite' . DS . 'manifest.json';
 
     /**
      * Obtenez plutôt le fichier d’entrée vite sur les fichiers en cours d’exécution ou groupés.
@@ -30,10 +30,12 @@ class Vite
             'css' => null,
         ];
 
-        // Vérifiez si vite est en cours d'exécution.
-        $entryFile = env('VITE_ORIGIN') . '/' . env('VITE_RESOURCES_DIR') . '/' . env('VITE_ENTRY_FILE');
+        if (! on_prod(true)) {
+            // Vérifiez si vite est en cours d'exécution.
+            $entryFile = env('VITE_ORIGIN') . '/' . env('VITE_RESOURCES_DIR') . '/' . env('VITE_ENTRY_FILE');
 
-        $result['js'] = @file_get_contents($entryFile) ? '<script type="module" src="' . $entryFile . '"></script>' : null;
+            $result['js'] = @file_get_contents($entryFile) ? '<script type="module" src="' . $entryFile . '"></script>' : null;
+        }
 
         // Correction React HRM.
         if (! empty($result['js'])) {
@@ -95,6 +97,10 @@ class Vite
     public static function isReady(): bool
     {
         $entryFile = env('VITE_ORIGIN') . '/' . env('VITE_RESOURCES_DIR') . '/' . env('VITE_ENTRY_FILE');
+
+        if (on_prod(true)) {
+            return is_file(self::$manifest);
+        }
 
         switch (true) {
             case @file_get_contents($entryFile):
