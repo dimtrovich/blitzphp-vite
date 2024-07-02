@@ -1,0 +1,11 @@
+includes:
+    - phpstan-baseline.php
+
+parameters:
+    phpVersion: 80100
+    tmpDir: build/phpstan
+    level: 6
+    paths:
+        - src
+    scanDirectories:
+        - vendor/blitz-php/framework/src
