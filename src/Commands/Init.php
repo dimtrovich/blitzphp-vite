@@ -78,7 +78,7 @@ class Init extends Command
 	 */
 	private function generateFrameworkFiles()
 	{
-		$this->io->warn('⚡ Générer des fichiers vite...', true);
+		$this->io->warn('⚡ Génération des fichiers vite...', true);
 
 		# Fichiers de framework.
 		$frameworkPath = ($this->framework === 'none') ? 'Frameworks/default' : "Frameworks/$this->framework";
