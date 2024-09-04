@@ -19,8 +19,8 @@ class Decorator implements ViewDecoratorInterface
     public static function decorate(string $html): string
     {
         // Vérifiez si vite est en cours d’exécution ou si le manifeste est prêt.
-        if (env('VITE_AUTO_INJECTING') && Vite::routeIsNotExluded()) {
-            if (Vite::isReady() === false) {
+        if (env('VITE_AUTO_INJECTING') && Vite::routeIsNotExluded() && !is_cli()) {
+           if (Vite::isReady() === false) {
                 throw new Exception('Le package BlitzPHP Vite est installé, mais pas initialisé. avez-vous exécutez "php klinge vite:init" ?');
             }
 
