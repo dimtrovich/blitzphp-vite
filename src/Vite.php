@@ -34,7 +34,7 @@ class Vite
             // Vérifiez si vite est en cours d'exécution.
             $entryFile = env('VITE_ORIGIN') . '/' . env('VITE_RESOURCES_DIR') . '/' . env('VITE_ENTRY_FILE');
 
-            $result['js'] = @file_get_contents($entryFile) ? '<script type="module" src="' . $entryFile . '"></script>' : null;
+            $result['js'] = @file_get_contents($entryFile) ? '<script data-vite type="module" src="' . $entryFile . '"></script>' : null;
         }
 
         // Correction React HRM.
@@ -56,12 +56,12 @@ class Vite
 
                 // Generer la balise js.
                 if ($fileExtension === '.js' && isset($file->isEntry) && $file->isEntry === true && (! isset($file->isDynamicEntry) || $file->isDynamicEntry !== true)) {
-                    $result['js'] .= '<script type="module" src="/' . $file->file . '"></script>';
+                    $result['js'] .= '<script data-vite type="module" src="/' . $file->file . '"></script>';
                 }
 
                 if (! empty($file->css)) {
                     foreach ($file->css as $cssFile) {
-                        $result['css'] .= '<link rel="stylesheet" href="/' . $cssFile . '" />';
+                        $result['css'] .= '<link data-vite rel="stylesheet" href="/' . $cssFile . '" />';
                     }
                 }
             }
@@ -81,7 +81,7 @@ class Vite
     {
         if (env('VITE_FRAMEWORK') === 'react') {
             $origin = env('VITE_ORIGIN');
-            $result = "<script type=\"module\">import RefreshRuntime from '{$origin}/@react-refresh';RefreshRuntime.injectIntoGlobalHook(window);window.\$RefreshReg\$ = () => {};window.\$RefreshSig\$ = () => (type) => type;window.__vite_plugin_react_preamble_installed__ = true;</script>";
+            $result = "<script data-vite type=\"module\">import RefreshRuntime from '{$origin}/@react-refresh';RefreshRuntime.injectIntoGlobalHook(window);window.\$RefreshReg\$ = () => {};window.\$RefreshSig\$ = () => (type) => type;window.__vite_plugin_react_preamble_installed__ = true;</script>";
 
             return "{$result}\n\t";
         }

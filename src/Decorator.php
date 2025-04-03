@@ -20,7 +20,7 @@ class Decorator implements ViewDecoratorInterface
     {
         // Vérifiez si vite est en cours d’exécution ou si le manifeste est prêt.
         if (env('VITE_AUTO_INJECTING') && Vite::routeIsNotExluded() && !is_cli()) {
-           if (Vite::isReady() === false) {
+            if (Vite::isReady() === false) {
                 throw new Exception('Le package BlitzPHP Vite est installé, mais pas initialisé. avez-vous exécutez "php klinge vite:init" ?');
             }
 
@@ -40,9 +40,13 @@ class Decorator implements ViewDecoratorInterface
             if (! empty($tags['css'])) {
                 $cssTags = $tags['css'];
 
-                $html = str_replace('</head>', "\n\t{$cssTags}\n", $html);
-                $html = str_replace('</body>', "\n\t{$jsTags}\n</body>", $html);
-            } else {
+                if (! str_contains($html, '<link data-vite')) {
+                    $html = str_replace('</head>', "\n\t{$cssTags}\n", $html);
+                }
+                if (! str_contains($html, '<script data-vite')) {
+                    $html = str_replace('</body>', "\n\t{$jsTags}\n</body>", $html);
+                }
+            } else if (! str_contains($html, '<script data-vite')) {
                 $html = str_replace('</head>', "\n\t{$jsTags}\n</head>", $html);
             }
         }
