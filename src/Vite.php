@@ -123,11 +123,14 @@ class Vite
      */
     public static function routeIsNotExluded(): bool
     {
-        $routes = explode(',', env('VITE_EXCLUDED_ROUTES'));
+        $routes = explode(',', env('VITE_EXCLUDED_ROUTES', ''));
 
-        // supprimer les espaces avant et après la route.
-        // foreach($routes as $i => $route) $routes[$i] = ltrim( rtrim($route) );
+		foreach (array_map('trim', $routes) as $route) {
+			if (url_is($route)) {
+				return false;
+			}
+		}
 
-        return ! in_array(uri_string(), $routes, true);
+		return true;
     }
 }
