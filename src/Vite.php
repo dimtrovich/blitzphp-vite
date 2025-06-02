@@ -125,12 +125,12 @@ class Vite
     {
         $routes = explode(',', env('VITE_EXCLUDED_ROUTES', ''));
 
-		foreach (array_map('trim', $routes) as $route) {
-			if (url_is($route)) {
-				return false;
-			}
-		}
+        foreach (array_map('trim', $routes) as $route) {
+            if (url_is($route)) {
+                return false;
+            }
+        }
 
-		return true;
+        return true;
     }
 }

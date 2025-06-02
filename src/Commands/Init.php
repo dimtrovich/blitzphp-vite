@@ -39,7 +39,7 @@ class Init extends Command
     private ?string $framework = null;
 
     /**
-     * @var string[]
+     * @var list<string>
      */
     private array $supportedFrameworks = ['none', 'react', 'vue', 'svelte'];
 

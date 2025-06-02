@@ -16,7 +16,7 @@ use Dimtrovich\BlitzPHP\Vite\Decorator;
 class Registrar
 {
     /**
-     * @return array<string, string[]>
+     * @return array<string, list<string>>
      */
     public static function view(): array
     {
