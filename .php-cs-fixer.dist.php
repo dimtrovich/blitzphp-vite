@@ -22,7 +22,9 @@ $finder = Finder::create()
     ->in([__DIR__ . '/src'])
     ->append([__FILE__]);
 
-$overrides = [];
+$overrides = [
+    'static_lambda' => false,
+];
 
 $options = [
     'cacheFile'    => 'build/.php-cs-fixer.cache',
